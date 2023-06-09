@@ -1,1 +1,1 @@
-0x00_Shell Repo
+'this is a script that prints the absolute path name of the current working directory'
