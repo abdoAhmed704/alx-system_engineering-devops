@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script creates the file /var/run/holbertonscript.pid containing its PID
+# Displays To infinity and beyond indefinitely
+
+function love() {
+    rm /var/run/holbertonscript.pid
+    exit
+}
+
+trap "echo I hate the kill command;love" SIGTERM
+trap "echo Y U no love me?!;love" SIGINT
+
+echo $$ >> /var/run/holbertonscript.pid
+while [ true ]; do
+    echo To infinity and beyond;
+done
