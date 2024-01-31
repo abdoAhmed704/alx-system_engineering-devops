@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-#stop process
+# Stop process
 
-target_pid=$(pgrep -f 4-to_infinity_and_beyond)
-kill -STOP "$target_pid"
+# Get the PIDs of the processes
+target_pids=($(pgrep -f "4-to_infinity_and_beyond"))
+for pid in "${target_pids[@]}"; do
+    kill -TERM "$pid"
+done
