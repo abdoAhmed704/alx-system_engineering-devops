@@ -11,7 +11,7 @@ frontend haproxy_balancer
 
 backend webservers
     balance roundrobin
-    server 440548-web-01 100.26.230.167:80
-    server 440548-web-02 34.202.164.217:80
+    server 440548-web-01 100.25.45.227:80
+    server 440548-web-02 54.237.100.217:80
 " | sudo tee -a /etc/haproxy/haproxy.cfg > /dev/null 2>&1
 sudo service haproxy restart
