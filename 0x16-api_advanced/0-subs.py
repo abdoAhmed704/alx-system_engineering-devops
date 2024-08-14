@@ -1,19 +1,27 @@
 #!/usr/bin/python3
-""" requests subscribers from reddit api """
-import re
+"""
+Reddit API
+"""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """ return the number of subscribers for a given sub reddit"""
+    """
+    Fetch comments from a given subreddit.
 
-    url = f"https://www.reddit.com/r/{subreddit}/about/"
-    res = requests.get(url)
-    html = res.text
-    pattern = r'subscribers="([^"]*)"'
-    subscribers = re.search(pattern, html)
+    Parameters:
+    subreddit (str): The name of the subreddit.
+    """
 
-    if subscribers:
-        return int(subscribers[0][13:-1])
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    headers = {"User-Agent": "Reddit API Tester"}
+
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        if 'data' in data and 'subscribers' in data['data']:
+            return data['data']['subscribers']
+        else:
+            return 0
     else:
         return 0
